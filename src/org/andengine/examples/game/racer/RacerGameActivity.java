@@ -61,17 +61,35 @@ public class RacerGameActivity extends SimpleBaseGameActivity {
 	private Camera mCamera;
 
 	private BitmapTextureAtlas mVehiclesTexture;
+	/**
+	 * 赛车图片
+	 */
 	private TiledTextureRegion mVehiclesTextureRegion;
 
 	private BitmapTextureAtlas mBoxTexture;
+	/**
+	 * 箱子图片
+	 */
 	private ITextureRegion mBoxTextureRegion;
 
 	private BitmapTextureAtlas mRacetrackTexture;
+	/**
+	 * 赛道
+	 */
 	private ITextureRegion mRacetrackStraightTextureRegion;
+	/**
+	 * 赛道
+	 */
 	private ITextureRegion mRacetrackCurveTextureRegion;
 
 	private BitmapTextureAtlas mOnScreenControlTexture;
+	/**
+	 * 摇杆
+	 */
 	private ITextureRegion mOnScreenControlBaseTextureRegion;
+	/**
+	 * 摇杆
+	 */
 	private ITextureRegion mOnScreenControlKnobTextureRegion;
 
 	private Scene mScene;
@@ -183,6 +201,9 @@ public class RacerGameActivity extends SimpleBaseGameActivity {
 		this.mScene.setChildScene(analogOnScreenControl);
 	}
 
+	/**
+	 * 创建赛车
+	 */
 	private void initCar() {
 		this.mCar = new TiledSprite(20, 20, CAR_SIZE, CAR_SIZE, this.mVehiclesTextureRegion, this.getVertexBufferObjectManager());
 		this.mCar.setCurrentTileIndex(0);
@@ -195,6 +216,9 @@ public class RacerGameActivity extends SimpleBaseGameActivity {
 		this.mScene.attachChild(this.mCar);
 	}
 
+	/**
+	 * 初始化箱子
+	 */
 	private void initObstacles() {
 		this.addObstacle(CAMERA_WIDTH / 2, RACETRACK_WIDTH / 2);
 		this.addObstacle(CAMERA_WIDTH / 2, RACETRACK_WIDTH / 2);
@@ -202,6 +226,11 @@ public class RacerGameActivity extends SimpleBaseGameActivity {
 		this.addObstacle(CAMERA_WIDTH / 2, CAMERA_HEIGHT - RACETRACK_WIDTH / 2);
 	}
 
+	/**
+	 * 创建箱子
+	 * @param pX
+	 * @param pY
+	 */
 	private void addObstacle(final float pX, final float pY) {
 		final Sprite box = new Sprite(pX, pY, OBSTACLE_SIZE, OBSTACLE_SIZE, this.mBoxTextureRegion, this.getVertexBufferObjectManager());
 
@@ -215,8 +244,11 @@ public class RacerGameActivity extends SimpleBaseGameActivity {
 		this.mScene.attachChild(box);
 	}
 
+	/**
+	 * 赛道
+	 */
 	private void initRacetrack() {
-		/* Straights. */
+		/* Straights. 直道*/
 		{
 			final ITextureRegion racetrackHorizontalStraightTextureRegion = this.mRacetrackStraightTextureRegion.deepCopy();
 			racetrackHorizontalStraightTextureRegion.setTextureWidth(3 * this.mRacetrackStraightTextureRegion.getWidth());
@@ -238,7 +270,7 @@ public class RacerGameActivity extends SimpleBaseGameActivity {
 			this.mScene.attachChild(rightVerticalStraight);
 		}
 
-		/* Edges */
+		/* Edges 弯道*/
 		{
 			final ITextureRegion racetrackCurveTextureRegion = this.mRacetrackCurveTextureRegion;
 
@@ -264,6 +296,9 @@ public class RacerGameActivity extends SimpleBaseGameActivity {
 	}
 
 
+	/**
+	 * 创建赛道的边缘(不能碰触)
+	 */
 	private void initRacetrackBorders() {
 		final VertexBufferObjectManager vertexBufferObjectManager = this.getVertexBufferObjectManager();
 
