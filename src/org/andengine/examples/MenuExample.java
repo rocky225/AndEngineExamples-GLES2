@@ -93,7 +93,7 @@ public class MenuExample extends SimpleBaseGameActivity implements IOnMenuItemCl
 	@Override
 	public Scene onCreateScene() {
 		this.mEngine.registerUpdateHandler(new FPSLogger());
-
+		
 		this.createMenuScene();
 
 		/* Just a simple scene with an animated face flying around. */
